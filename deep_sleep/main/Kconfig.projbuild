@@ -2,7 +2,7 @@ menu "Example Configuration"
 
     config EXAMPLE_TOUCH_WAKEUP
         bool "Enable touch wake up"
-        default y
+        default n
         depends on SOC_PM_SUPPORT_TOUCH_SENSOR_WAKEUP
         help
             This option enables wake up from deep sleep using touch pads.
@@ -13,7 +13,7 @@ menu "Example Configuration"
 
     config EXAMPLE_EXT0_WAKEUP
         bool "Enable wakeup from GPIO (ext0)"
-        default y if !IDF_TARGET_ESP32
+        default n if !IDF_TARGET_ESP32
         default n if IDF_TARGET_ESP32
         depends on SOC_PM_SUPPORT_EXT0_WAKEUP
         help
@@ -25,7 +25,7 @@ menu "Example Configuration"
 
     config EXAMPLE_EXT1_WAKEUP
         bool "Enable wakeup from GPIO (ext1)"
-        default y
+        default n
         depends on SOC_PM_SUPPORT_EXT1_WAKEUP
         help
             This option enables wake up from deep sleep from GPIO2 and GPIO4. They should be connected to LOW to avoid
@@ -257,7 +257,7 @@ menu "Example Configuration"
 
     config EXAMPLE_GPIO_WAKEUP
         bool "Enable wakeup from GPIO"
-        default y
+        default n
         depends on SOC_GPIO_SUPPORT_DEEPSLEEP_WAKEUP
         help
             This option enables wake up from GPIO. Be aware that if you use low level to trigger wakeup, we strongly

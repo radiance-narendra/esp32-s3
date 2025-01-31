@@ -20,6 +20,7 @@
 
 #if SOC_RTC_FAST_MEM_SUPPORTED
 static RTC_DATA_ATTR struct timeval sleep_enter_time;
+static RTC_DATA_ATTR uint32_t _wakeUpCount = 0;
 #else
 static struct timeval sleep_enter_time;
 #endif
@@ -61,7 +62,8 @@ static void deep_sleep_task(void *args)
 
     switch (esp_sleep_get_wakeup_cause()) {
         case ESP_SLEEP_WAKEUP_TIMER: {
-            printf("Wake up from timer. Time spent in deep sleep: %dms\n", sleep_time_ms);
+            _wakeUpCount++;
+            printf("Wake up from timer. Time spent in deep sleep: %dms, wakeup count: %ld\n", sleep_time_ms, _wakeUpCount);
             break;
         }
 
